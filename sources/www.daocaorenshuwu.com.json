@@ -1,34 +1,33 @@
-  
 {
-    "name": "斋书苑",
-    "url": "www.zhaishuyuan.com",
-    "version": 101,
+    "name": "稻草人书屋",
+    "url": "www.daocaorenshuwu.com",
+    "version": 103,
     "search": {
-        "url": "https://www.zhaishuyuan.com/search/@post->s=${key}",
-        "charset": "gb2312",
-        "list": "#sitembox > dl",
-        "name": "h3 > a",
-        "author": "dd.book_other > span:nth-child(1)",
-        "cover": "dt > a > img",
-        "detail": "dt > a"
+        "url": "https://www.daocaorenshuwu.com/plus/search.php?q=${key}",
+        "list": "tbody > tr",
+        "name": "a@attr->title",
+        "author": "td:nth-child(2)",
+        "detail": "a"
     },
     "detail": {
-        "name": "meta[property=og:title]@attr->content",
+        "name": "meta[property=og:novel:book_name]@attr->content",
         "author": "meta[property=og:novel:author]@attr->content",
         "cover": "meta[property=og:image]@attr->content",
         "summary": "meta[property=og:description]@attr->content",
         "status": "meta[property=og:novel:status]@attr->content",
         "update": "meta[property=og:novel:update_time]@attr->content",
-        "lastChapter": "meta[property=og:novel:latest_chapter_name]@attr->content",
-        "catalog": "div.motion > a"
+        "lastChapter": "meta[property=og:novel:latest_chapter_name]@attr->content"
     },
     "catalog": {
-        "list": "#readerlists > ul > li",
+        "list": "#all-chapter > div > div > div > div > a",
         "name": "a",
-        "chapter": "a",
-        "page": "div.pages > a:gt(0)"
+        "chapter": "a"
     },
     "chapter": {
-        "content": "#content"
+        "content": "#cont-text",
+        "filter": [
+            "#cont-text > style@match->(?<=.).+(?=\\{)"
+        ],
+        "page": "a:matches(下一页)"
     }
 }
